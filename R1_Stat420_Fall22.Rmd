@@ -1,0 +1,126 @@
+---
+title: "Hierarchical Models, CLT and Delta Method"
+author: " Your Name and id"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    number_sections: yes    
+    toc: yes
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Heirarchichal Models
+
+Consider the following heirachichal model:
+
+$$ T \sim \text{Gamma}(\alpha = 10, \beta = 4), \quad Y|T \sim \text{Pois}(T)$$
+Write a function that models the random variable $Y$. This function must
+take input values $\alpha$ and $\beta$ and ouput the value that the
+random variable will take on a single run of the experiment.
+
+```{r}
+
+```
+
+Use the replicate function to get 10000 values of the random variable
+$Y$. Store these values in a variable 'y_empirical'.
+
+```{r}
+
+```
+
+Use the 'hist' function to calculate the empirical distribution of $Y$.
+
+```{r}
+
+```
+
+Now get 10000 random values from the appropriate negative binomial
+distribution, and store these in the variable 'y_theoretical'. Use the
+'qqplot' function to compare the quantiles of 'y_empirical' to those of
+'y_theoretical'. What do you notice?
+
+# Limitting Distributions
+
+## Maximum of Uniforms
+
+Write a function 'uni_sample_max' that simulates the 'sample_max'
+statistic on a random sample of size $n$ coming from the uniform
+distribution on $(0, 1)$. Note that this function takes input $n$, the
+sample size.
+
+```{r}
+
+```
+
+Use the above function define the statistic:
+$$ \hat{\theta} = n(1-X_{(n)}) $$ We know that this statistic converges
+in distribution to $\text{Exp}(\lambda = 1)$. Call the function
+'theta_hat' which must take input $n$, the sample size of the uniform
+random sample.
+
+```{r}
+
+```
+
+Write a function \`theta_hat_plot' which takes input $n$, and outputs
+the qqplot of 10000 values coming from the replicates of 'theta_hat' and
+10000 values coming from the $\text{Exp}(\lambda = 1)$ (use the 'rexp'
+command for the latter).
+
+```{r}
+
+```
+
+Evaluate 'theta_hat_plot' on values of $n$ in the vector
+$(1, 2, 3, 5, 10, 20, 40, 50, 100, 1000)$.
+
+```{r}
+
+```
+
+# Delta Method
+
+## Odds for Binomial Distribution
+
+Consider the estimator $\hat{\theta} = \frac{\hat{p}}{1-\hat{p}}$,
+(where $\hat{p}$ is proportion of successes in $n$ Bernoulli trials) for
+the parameter 'odds' $\theta = \frac{p}{1-p}$. Let
+$g(p) = \frac{p}{1-p}$, then using the delta-method we know that
+$$ \sqrt{n}(g(\hat(p)) - g(p)) \longrightarrow N(0, \sigma^2(g'(p))^2) $$
+
+Write a function 'odds_hat' that takes input the sample size $n$, and
+calculates the odds estimate for $n$ independent Bernoulli random
+variable with $p=0.7$.
+
+```{r}
+
+```
+
+Write a function \`odds_plot' which takes input $n$, and outputs the
+qqplot of 10000 values coming from the replicates of 'odds_hat' and
+10000 values coming from the $N(0, \sigma^2(g'(0.7))^2)$ (use the
+'rnorm' command for the latter).
+
+```{r}
+
+```
+
+Evaluate 'odds_plot' on values of $n$ in the vector
+$(1, 2, 3, 5, 10, 20, 40, 50, 100, 1000)$.
+
+```{r}
+
+```
+
+## Approximating $\frac{1}{\mu}$.
+
+Consider sampling from $\text{Gamma}(\alpha =2, \beta = 4)$. Run a
+simulation (like the one for 'odds') to show the following property of the limiting
+distribution of the reciprocal of the sample mean
+
+$$ \frac{\sqrt{n}\left(\frac{1}{\overline{X}} - \frac{1}{\mu}\right)}{\frac{1}{\overline{X}^2} S} \longrightarrow N(0,1)$$
+where $\overline{X}$ is the sample mean, and $S = \sqrt{S^2}$.
