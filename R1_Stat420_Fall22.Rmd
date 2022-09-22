@@ -12,30 +12,33 @@ editor_options:
     wrap: 72
 ---
 
-# Heirarchichal Models
+# Hierarchical Models
 
-Consider the following heirachichal model:
+Consider the following hierarchical model:
 
 $$ T \sim \text{Gamma}(\alpha = 10, \beta = 4), \quad Y|T \sim \text{Pois}(T)$$
 Write a function that models the random variable $Y$. This function must
-take input values $\alpha$ and $\beta$ and ouput the value that the
+take input values $\alpha$ and $\beta$ and output the value that the
 random variable will take on a single run of the experiment.
 
 ```{r}
-
+poisson_gamma <- function(alpha, beta){
+  T <- rgamma(n = 1, shape = alpha, scale = beta)
+  Y <- rpois(n = 1, lambda = T)
+}
 ```
 
 Use the replicate function to get 10000 values of the random variable
 $Y$. Store these values in a variable 'y_empirical'.
 
 ```{r}
-
+y_empirical <- replicate(10000,poisson_gamma(10,4))
 ```
 
 Use the 'hist' function to calculate the empirical distribution of $Y$.
 
 ```{r}
-
+hist(y_empirical)
 ```
 
 Now get 10000 random values from the appropriate negative binomial
@@ -43,7 +46,15 @@ distribution, and store these in the variable 'y_theoretical'. Use the
 'qqplot' function to compare the quantiles of 'y_empirical' to those of
 'y_theoretical'. What do you notice?
 
-# Limitting Distributions
+```{r}
+# k/p is the mean
+y_theoretical <- replicate(10000,rnbinom(n = 80,size = 40, prob = .5)) 
+par(mfrow = c(1,2))
+hist(y_theoretical)
+qqplot(y_theoretical,y_empirical)
+```
+
+# Limiting Distributions
 
 ## Maximum of Uniforms
 
@@ -119,8 +130,8 @@ $(1, 2, 3, 5, 10, 20, 40, 50, 100, 1000)$.
 ## Approximating $\frac{1}{\mu}$.
 
 Consider sampling from $\text{Gamma}(\alpha =2, \beta = 4)$. Run a
-simulation (like the one for 'odds') to show the following property of the limiting
-distribution of the reciprocal of the sample mean
+simulation (like the one for 'odds') to show the following property of
+the limiting distribution of the reciprocal of the sample mean
 
 $$ \frac{\sqrt{n}\left(\frac{1}{\overline{X}} - \frac{1}{\mu}\right)}{\frac{1}{\overline{X}^2} S} \longrightarrow N(0,1)$$
 where $\overline{X}$ is the sample mean, and $S = \sqrt{S^2}$.
