@@ -47,8 +47,7 @@ distribution, and store these in the variable 'y_theoretical'. Use the
 'y_theoretical'. What do you notice?
 
 ```{r}
-# k/p is the mean
-y_theoretical <- replicate(10000,rnbinom(n = 80,size = 40, prob = .5)) 
+y_theoretical <- replicate(10000,rnbinom(n = 1,size = 10, prob = 1/(1+4))) 
 par(mfrow = c(1,2))
 hist(y_theoretical)
 qqplot(y_theoretical,y_empirical)
