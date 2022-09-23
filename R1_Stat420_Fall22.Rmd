@@ -78,7 +78,9 @@ in distribution to $\text{Exp}(\lambda = 1)$. Call the function
 random sample.
 
 ```{r}
-
+theta_hat <- function(n){
+  t_hat <- n*(1-uni_sample_max(n))
+}
 ```
 
 Write a function \`theta_hat_plot' which takes input $n$, and outputs
@@ -87,13 +89,21 @@ the qqplot of 10000 values coming from the replicates of 'theta_hat' and
 command for the latter).
 
 ```{r}
-
+theta_hat_plot <- function(n){
+  t_hat_sample <- replicate(10000, theta_hat(n))
+  exp <- rexp(10000)
+  qqplot(t_hat_sample, exp, main=paste("Q-Q: n=",n))
+}
 ```
 
 Evaluate 'theta_hat_plot' on values of $n$ in the vector
 $(1, 2, 3, 5, 10, 20, 40, 50, 100, 1000)$.
 
 ```{r}
+ns <- c(1, 2, 3, 5, 10, 20, 40, 50, 100, 1000)
+for (n in ns){
+  theta_hat_plot(n)
+}
 
 ```
 
