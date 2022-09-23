@@ -1,11 +1,11 @@
 ---
 title: "Hierarchical Models, CLT and Delta Method"
-author: " Your Name and id"
+author: "[ADD NAME (ID)], Matthew Foulk (116992152)"
 output:
-  pdf_document:
-    toc: yes
   html_document:
     number_sections: yes    
+    toc: yes
+  pdf_document:
     toc: yes
 editor_options: 
   markdown: 
@@ -53,6 +53,8 @@ par(mfrow = c(1,2))
 hist(y_theoretical)
 qqplot(y_theoretical,y_empirical)
 ```
+Answer:  
+The Q-Q plot creates a roughly straight line. This likely indicates that the poisson-gamma mixture can be viewed as a negative binomial distribution.
 
 # Limiting Distributions
 
