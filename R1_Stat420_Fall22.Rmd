@@ -165,3 +165,31 @@ the limiting distribution of the reciprocal of the sample mean
 
 $$ \frac{\sqrt{n}\left(\frac{1}{\overline{X}} - \frac{1}{\mu}\right)}{\frac{1}{\overline{X}^2} S} \longrightarrow N(0,1)$$
 where $\overline{X}$ is the sample mean, and $S = \sqrt{S^2}$.
+
+```{r}
+normal_approx <- function(n){
+  samp = rgamma(n, 2, 4)
+  samp_mean = mean(samp)
+  variance = var(samp)
+  output <- sqrt(n)*(1/samp_mean - 1/8)/(sqrt(variance)/samp_mean^2)
+  return(output)
+}
+
+```
+
+```{r}
+gamma_plot <- function(n){
+  sample = replicate(10000, normal_approx(n))
+  dist_odds = rnorm(10000, 0, 1)
+  qqplot(sample, dist_odds, main=paste("Q-Q: n=",n))
+}
+```
+
+```{r}
+ns <- c(1, 2, 3, 5, 10, 20, 40, 50, 100, 1000)
+for (n in ns){
+  gamma_plot(n)
+}
+
+```
+
