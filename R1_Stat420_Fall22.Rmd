@@ -2,10 +2,10 @@
 title: "Hierarchical Models, CLT and Delta Method"
 author: "[ADD NAME (ID)], Matthew Foulk (116992152)"
 output:
-  pdf_document:
-    toc: yes
   html_document:
     number_sections: yes    
+    toc: yes
+  pdf_document:
     toc: yes
 editor_options: 
   markdown: 
@@ -186,7 +186,7 @@ gamma_plot <- function(n){
 ```
 
 ```{r}
-ns <- c(1, 2, 3, 5, 10, 20, 40, 50, 100, 1000)
+ns <- c(2, 3, 5, 10, 20, 40, 50, 100, 1000)
 for (n in ns){
   gamma_plot(n)
 }
