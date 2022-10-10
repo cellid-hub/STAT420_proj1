@@ -122,6 +122,12 @@ calculates the odds estimate for $n$ independent Bernoulli random
 variable with $p=0.7$.
 
 ```{r}
+odds_hat <- function(n){
+  x <- rbinom(n, 1, .7)
+  p_hat <- mean(x)
+  odds <- p_hat/(1-p_hat)
+  return(odds)
+}
 
 ```
 
@@ -131,6 +137,12 @@ qqplot of 10000 values coming from the replicates of 'odds_hat' and
 'rnorm' command for the latter).
 
 ```{r}
+odds_plot <- function(n){
+  sample_odds = replicate(10000, odds_hat(n))
+  var = (1/(1-.7)^2)^2
+  dist_odds = rnorm(10000, 0, var)
+  qqplot(sample_odds, dist_odds, main=paste("Q-Q: n=",n))
+}
 
 ```
 
@@ -138,6 +150,10 @@ Evaluate 'odds_plot' on values of $n$ in the vector
 $(1, 2, 3, 5, 10, 20, 40, 50, 100, 1000)$.
 
 ```{r}
+ns <- c(1, 2, 3, 5, 10, 20, 40, 50, 100, 1000)
+for (n in ns){
+  odds_plot(n)
+}
 
 ```
 
