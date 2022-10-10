@@ -185,6 +185,8 @@ gamma_plot <- function(n){
 }
 ```
 
+1 is removed from ns (versus in "odds") because sample variance is undefined for
+n=1 when using Bessel's correction (which var() does in R)
 ```{r}
 ns <- c(2, 3, 5, 10, 20, 40, 50, 100, 1000)
 for (n in ns){
