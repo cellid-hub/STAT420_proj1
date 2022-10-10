@@ -1,6 +1,6 @@
 ---
 title: "Hierarchical Models, CLT and Delta Method"
-author: "[ADD NAME (ID)], Matthew Foulk (116992152)"
+author: "Nathan Poteet, Dylan Celli, Matthew Foulk"
 output:
   html_document:
     number_sections: yes    
