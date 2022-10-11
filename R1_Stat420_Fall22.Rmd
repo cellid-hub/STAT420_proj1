@@ -12,6 +12,8 @@ editor_options:
     wrap: 72
 ---
 
+Students: Nathan Poteet, Dylan Celli, Matthew Foulk
+
 # Hierarchical Models
 
 Consider the following hierarchical model:
