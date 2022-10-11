@@ -1,6 +1,6 @@
 ---
 title: "Hierarchical Models, CLT and Delta Method"
-author: "Nathan Poteet, Dylan Celli, Matthew Foulk"
+authors: "Nathan Poteet, Dylan Celli, Matthew Foulk"
 output:
   html_document:
     number_sections: yes    
@@ -52,8 +52,11 @@ par(mfrow = c(1,2))
 hist(y_theoretical)
 qqplot(y_theoretical,y_empirical)
 ```
-Answer:  
-The Q-Q plot creates a roughly straight line. This likely indicates that the poisson-gamma mixture can be viewed as a negative binomial distribution.
+
+Answer:\
+The Q-Q plot creates a roughly straight line. This likely indicates that
+the poisson-gamma mixture can be viewed as a negative binomial
+distribution.
 
 # Limiting Distributions
 
@@ -185,8 +188,9 @@ gamma_plot <- function(n){
 }
 ```
 
-1 is removed from ns (versus in "odds") because sample variance is undefined for
-n=1 when using Bessel's correction (which var() does in R)
+1 is removed from ns (versus in "odds") because sample variance is
+undefined for n=1 when using Bessel's correction (which var() does in R)
+
 ```{r}
 ns <- c(2, 3, 5, 10, 20, 40, 50, 100, 1000)
 for (n in ns){
@@ -194,4 +198,3 @@ for (n in ns){
 }
 
 ```
-
